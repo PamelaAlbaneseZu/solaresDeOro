@@ -1,6 +1,5 @@
 # Solares de Oro — Proyecto Frontend (sin backend)
 Empresa hotelera Solares de Oro
-# Solares de Oro — Proyecto Frontend (sin backend)
 
 Bienvenido/a a la **última versión** del sitio web de la cadena hotelera **Solares de Oro**.  
 Este proyecto está hecho **100% en Frontend** (HTML, CSS y JavaScript) y **no requiere backend**.  
