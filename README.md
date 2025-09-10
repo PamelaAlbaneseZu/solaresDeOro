@@ -10,7 +10,7 @@ La persistencia se simula con **localStorage** del navegador.
 ## ✨ Características principales
 
 - **Inicio** con héroe, CTA y **habitaciones destacadas**.
-  - Hero (héroe): nombre de patrón de diseño para la sección superior destacada (no es una etiqueta HTML). En este proyecto se implementa con <section>.
+  - Hero (héroe): nombre de patrón de diseño para la sección superior destacada (no es una etiqueta HTML). En este proyecto se implementa con "section".
   - CTA (Call To Action): enlaces/botones que invitan a una acción clave (Reservar ahora, Ver sucursales). Aquí se usan hipervínculos dentro del hero.
 - **Sucursales (8 en total)** con tarjetas y **carrusel de 3 imágenes** por sucursal.
 - **Detalle de sucursal**: tabla de habitaciones con **precio/noche**, **personas**, **noches** y **fecha** + botón **“Añadir a reservas”**.
