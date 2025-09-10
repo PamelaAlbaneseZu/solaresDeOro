@@ -177,7 +177,7 @@ Proyecto pensado para **uso educativo/demostrativo**. Puedes adaptarlo librement
 
 ---
 
-## 👩‍💻 Autora del encargo
+## 👩‍💻 Autores del encargo
 
-**Pamela** — Estudiante de Ingeniería en Informática.  
+**Pamela Albanese y Omar Hernandez** — Estudiantes de Ingeniería en Informática.  
 Este README acompaña la entrega **final** con las últimas correcciones (logo grande, enlaces oscuros, imágenes operativas, reservas con fecha, registro y panel admin).
