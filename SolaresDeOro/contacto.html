@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Solares de Oro - Contacto</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<nav class="navbar">
+  <a class="navbar-brand" href="index.html">
+    <img src="assets/imagenes_proyecto/logoSolaresDeOro.png" alt="Logo">
+    Solares de Oro
+  </a>
+  <div>
+    <a href="index.html">Inicio</a>
+    <a href="sucursales.html">Sucursales</a>
+    <a href="contacto.html">Contacto</a>
+    <a href="reservas.html">Reservas</a>
+    <a href="login.html">Login</a>
+    <a href="administrador.html">Administrador</a>
+  </div>
+</nav>
+  <div class="section">
+    <h2>Contacto</h2>
+    <form onsubmit="enviarMensaje(event)">
+      <div class="form-group">
+        <label for="nombre">Nombre:</label>
+        <input type="text" id="nombre" required maxlength="100">
+      </div>
+      <div class="form-group">
+        <label for="email">Correo electrónico:</label>
+        <input type="email" id="email" required maxlength="100">
+      </div>
+      <div class="form-group">
+        <label for="comentario">Comentario:</label>
+        <textarea id="comentario" rows="5" required maxlength="500"></textarea>
+      </div>
+      <button type="submit">Enviar</button>
+    </form>
+  </div>
+<footer class="footer"><p>&copy; 2025 Solares de Oro. Todos los derechos reservados.</p></footer>
+  <script>
+    function enviarMensaje(e){
+      e.preventDefault();const nombre=document.getElementById('nombre').value;const email=document.getElementById('email').value;const comentario=document.getElementById('comentario').value;const allowed=['@duoc.cl','@profesor.duoc.cl','@gmail.com','@solaresdeoro.cl'];const domain=email.substring(email.indexOf('@'));if(!allowed.includes(domain)){alert('Dominio de correo no permitido.');return;}alert('Mensaje enviado. ¡Gracias por contactarnos!');document.querySelector('form').reset();}
+  </script>
+</body>
+</html>

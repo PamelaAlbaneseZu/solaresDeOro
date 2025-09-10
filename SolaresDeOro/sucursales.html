@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Solares de Oro - Sucursales</title>
+  <link rel="stylesheet" href="styles.css">
+  <script src="data/data.js"></script>
+  <script src="app.js"></script>
+</head>
+<body onload="renderSucursales()">
+<nav class="navbar">
+  <a class="navbar-brand" href="index.html">
+    <img src="assets/imagenes_proyecto/logoSolaresDeOro.png" alt="Logo">
+    Solares de Oro
+  </a>
+  <div>
+    <a href="index.html">Inicio</a>
+    <a href="sucursales.html">Sucursales</a>
+    <a href="contacto.html">Contacto</a>
+    <a href="reservas.html">Reservas</a>
+    <a href="login.html">Login</a>
+    <a href="administrador.html">Administrador</a>
+  </div>
+</nav>
+  <div class="section">
+    <h2>Nuestras Sucursales</h2>
+    <div id="sucursalesContainer"></div>
+  </div>
+<footer class="footer"><p>&copy; 2025 Solares de Oro. Todos los derechos reservados.</p></footer>
+  <script>
+    function renderSucursales(){
+      const cont=document.getElementById('sucursalesContainer');
+      let html='<div style="display:flex;flex-wrap:wrap;justify-content:center;">';
+      getSucursales().forEach(function(suc){
+        html += '<div class="card" style="width:300px;">';
+        html += '<div class="carousel" id="carousel_' + suc.id + '">';
+        suc.imagenes.forEach(function(img,idx){
+          html += '<img src="' + img + '" style="display:' + (idx==0?'block':'none') + ';">';
+        });
+        html += '<span class="carousel-control-prev" onclick="prevImage(' + suc.id + ')">◀</span>';
+        html += '<span class="carousel-control-next" onclick="nextImage(' + suc.id + ')">▶</span>';
+        html += '</div>';
+        html += '<div style="padding:1rem;">';
+        html += '<h3>' + suc.nombre + '</h3>';
+        html += '<p>' + suc.ciudad + ', ' + suc.region + '</p>';
+        html += '<p><a href="sucursal.html?id=' + suc.id + '">Ver detalles</a></p>';
+        html += '</div></div>';
+      });
+      html += '</div>';
+      cont.innerHTML = html;
+    }
+    function prevImage(id){
+      const carousel=document.getElementById('carousel_' + id);
+      const imgs=carousel.getElementsByTagName('img');
+      let current=0;
+      for(let i=0;i<imgs.length;i++){if(imgs[i].style.display==='block'){current=i;break;}}
+      imgs[current].style.display='none';
+      const prev=(current-1+imgs.length)%imgs.length;
+      imgs[prev].style.display='block';
+    }
+    function nextImage(id){
+      const carousel=document.getElementById('carousel_' + id);
+      const imgs=carousel.getElementsByTagName('img');
+      let current=0;
+      for(let i=0;i<imgs.length;i++){if(imgs[i].style.display==='block'){current=i;break;}}
+      imgs[current].style.display='none';
+      const next=(current+1)%imgs.length;
+      imgs[next].style.display='block';
+    }
+  </script>
+</body>
+</html>

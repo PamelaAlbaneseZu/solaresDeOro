@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Solares de Oro - Administrador</title>
+  <link rel="stylesheet" href="styles.css">
+  <script src="data/data.js"></script>
+  <script src="app.js"></script>
+</head>
+<body onload="checkAdmin(); showSection('adminPanel')">
+<nav class="navbar">
+  <a class="navbar-brand" href="index.html">
+    <img src="assets/imagenes_proyecto/logoSolaresDeOro.png" alt="Logo">
+    Solares de Oro
+  </a>
+  <div>
+    <a href="index.html">Inicio</a>
+    <a href="sucursales.html">Sucursales</a>
+    <a href="contacto.html">Contacto</a>
+    <a href="reservas.html">Reservas</a>
+    <a href="login.html">Login</a>
+    <a href="administrador.html">Administrador</a>
+  </div>
+</nav>
+  <div class="section">
+    <h2>Administrador</h2>
+    <div class="admin-container">
+      <div class="admin-sidebar">
+        <a href="#" onclick="showSection('adminPanel')">Panel</a>
+        <a href="#" onclick="showSection('adminReservas')">Reservas</a>
+        <a href="#" onclick="showSection('adminPrecios')">Modificar Precios</a>
+        <a href="#" onclick="showSection('adminHabitaciones')">Habitaciones</a>
+        <a href="#" onclick="showSection('adminSucursales')">Sucursales</a>
+        <a href="#" onclick="showSection('adminTrabajadores')">Trabajadores</a>
+        <a href="#" onclick="logout()">Cerrar Sesión</a>
+      </div>
+      <div class="admin-content">
+        <div id="adminPanel" class="admin-section">
+          <h3>Panel</h3>
+          
+
+<p>Bienvenido al panel de administración. Aquí puedes realizar diversas tareas para mantener al día la operación del hotel:</p>
+
+<ul>
+  <li>Revisar y gestionar las <strong>Reservas</strong> realizadas por los clientes.</li>
+  <li><strong>Modificar precios</strong> de las habitaciones por sucursal y tipo.</li>
+  <li>Agregar o editar <strong>Habitaciones</strong> de cada sucursal.</li>
+  <li>Crear nuevas <strong>Sucursales</strong> o actualizar la información de las existentes.</li>
+  <li>Gestionar <strong>Trabajadores</strong>: agregar o eliminar personal y asignarlo a una sucursal.</li>
+</ul>
+
+        </div>
+        <div id="adminReservas" class="admin-section" style="display:none;">
+          <h3>Reservas</h3>
+          <div id="adminReservasTabla"></div>
+        </div>
+        <div id="adminPrecios" class="admin-section" style="display:none;">
+          <h3>Modificar Precios</h3>
+          <div id="adminPreciosTabla"></div>
+        </div>
+        <div id="adminHabitaciones" class="admin-section" style="display:none;">
+          <h3>Habitaciones</h3>
+          <div id="adminHabitacionesForm"></div>
+        </div>
+        <div id="adminSucursales" class="admin-section" style="display:none;">
+          <h3>Sucursales</h3>
+          <div id="adminSucursalesForm"></div>
+        </div>
+        <div id="adminTrabajadores" class="admin-section" style="display:none;">
+          <h3>Trabajadores</h3>
+          <div id="adminTrabajadoresForm"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+<footer class="footer"><p>&copy; 2025 Solares de Oro. Todos los derechos reservados.</p></footer>
+</body>
+</html>

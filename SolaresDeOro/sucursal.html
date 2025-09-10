@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Solares de Oro - Sucursal</title>
+  <link rel="stylesheet" href="styles.css">
+  <script src="data/data.js"></script>
+  <script src="app.js"></script>
+</head>
+<body onload="loadSucursal()">
+<nav class="navbar">
+  <a class="navbar-brand" href="index.html">
+    <img src="assets/imagenes_proyecto/logoSolaresDeOro.png" alt="Logo">
+    Solares de Oro
+  </a>
+  <div>
+    <a href="index.html">Inicio</a>
+    <a href="sucursales.html">Sucursales</a>
+    <a href="contacto.html">Contacto</a>
+    <a href="reservas.html">Reservas</a>
+    <a href="login.html">Login</a>
+    <a href="administrador.html">Administrador</a>
+  </div>
+</nav>
+  <div class="section"><div id="sucursalDetalle"></div></div>
+<footer class="footer"><p>&copy; 2025 Solares de Oro. Todos los derechos reservados.</p></footer>
+  <script>
+    function loadSucursal(){
+      const params=new URLSearchParams(window.location.search);
+      const id=params.get('id');
+      const suc=getSucursalById(id);
+      const cont=document.getElementById('sucursalDetalle');
+      if(!suc){cont.innerHTML='<p>Sucursal no encontrada.</p>';return;}
+      let html='<h2>' + suc.nombre + '</h2>';
+      html += '<div class="carousel" id="detailCarousel">';
+      suc.imagenes.forEach(function(img,idx){html += '<img src="' + img + '" style="display:' + (idx==0?'block':'none') + ';">';});
+      html += '<span class="carousel-control-prev" onclick="detailPrev()">◀</span>';
+      html += '<span class="carousel-control-next" onclick="detailNext()">▶</span>';
+      html += '</div>';
+      html += '<p><strong>Ciudad:</strong> ' + suc.ciudad + '</p>';
+      html += '<p><strong>Región:</strong> ' + suc.region + '</p>';
+      html += '<p><strong>Dirección:</strong> ' + suc.direccion + '</p>';
+      html += '<h3>Habitaciones</h3>';
+      html += '<table><thead><tr><th>Tipo</th><th>Precio (CLP)</th><th>Capacidad</th><th>Personas</th><th>Noches</th><th>Fecha</th><th>Acción</th></tr></thead><tbody>';
+      suc.habitaciones.forEach(function(hab){
+        html += '<tr>';
+        html += '<td>' + hab.tipo + '</td>';
+        html += '<td>' + hab.precio.toLocaleString('es-CL') + '</td>';
+        html += '<td>' + hab.capacidad + '</td>';
+        html += '<td><input type="number" id="per_' + hab.tipo + '" min="1" max="' + hab.capacidad + '" value="1"></td>';
+        html += '<td><input type="number" id="noches_' + hab.tipo + '" min="1" value="1"></td>';
+        html += '<td><input type="date" id="fecha_' + hab.tipo + '"></td>';
+        // Botón para agregar la reserva: llama a la función auxiliar definida abajo
+        html += '<td><button data-sucursal="' + suc.id + '" data-tipo="' + hab.tipo + '" onclick="addReservaFromButton(this)">Añadir a reservas</button></td>';
+        html += '</tr>';
+      });
+      html += '</tbody></table>';
+      cont.innerHTML = html;
+    }
+    
+// Función auxiliar para añadir reserva desde la página de detalle de sucursal.
+function addReservaDesdeSucursal(sucId,tipo){
+  const per=document.getElementById('per_' + tipo).value;
+  const noches=document.getElementById('noches_' + tipo).value;
+  const fecha=document.getElementById('fecha_' + tipo).value;
+  addReserva(sucId,tipo,per,noches,fecha);
+  alert('Agregado a reservas');
+}
+
+// Manejador de clic para el botón de reserva.  
+// Recupera la sucursal y el tipo almacenados en los atributos data- del botón
+// y utiliza los campos de personas, noches y fecha correspondientes para
+// llamar a addReserva().
+function addReservaFromButton(btn){
+  const sucId = btn.getAttribute('data-sucursal');
+  const tipo = btn.getAttribute('data-tipo');
+  const per = document.getElementById('per_' + tipo).value;
+  const noches = document.getElementById('noches_' + tipo).value;
+  const fecha = document.getElementById('fecha_' + tipo).value;
+  addReserva(sucId, tipo, per, noches, fecha);
+  alert('Agregado a reservas');
+}
+function detailPrev(){
+      const carousel=document.getElementById('detailCarousel');const imgs=carousel.getElementsByTagName('img');let current=0;for(let i=0;i<imgs.length;i++){if(imgs[i].style.display==='block'){current=i;break;}}imgs[current].style.display='none';const prev=(current-1+imgs.length)%imgs.length;imgs[prev].style.display='block';}
+    function detailNext(){
+      const carousel=document.getElementById('detailCarousel');const imgs=carousel.getElementsByTagName('img');let current=0;for(let i=0;i<imgs.length;i++){if(imgs[i].style.display==='block'){current=i;break;}}imgs[current].style.display='none';const next=(current+1)%imgs.length;imgs[next].style.display='block';}
+  </script>
+</body>
+</html>

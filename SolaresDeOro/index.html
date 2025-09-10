@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Solares de Oro - Inicio</title>
+  <link rel="stylesheet" href="styles.css">
+  <script src="data/data.js"></script>
+  <script src="app.js"></script>
+</head>
+<body>
+<nav class="navbar">
+  <a class="navbar-brand" href="index.html">
+    <img src="assets/imagenes_proyecto/logoSolaresDeOro.png" alt="Logo">
+    Solares de Oro
+  </a>
+  <div>
+    <a href="index.html">Inicio</a>
+    <a href="sucursales.html">Sucursales</a>
+    <a href="contacto.html">Contacto</a>
+    <a href="reservas.html">Reservas</a>
+    <a href="login.html">Login</a>
+    <a href="administrador.html">Administrador</a>
+  </div>
+</nav>
+  <div class="section" style="background-image: url('assets/imagenes_proyecto/hotel antofagasta/cuarto.jpg'); background-size: cover; background-position: center; color: rgb(48, 46, 46); text-align:center; padding:4rem 1rem;">
+    <h1 id="bienvenido">Bienvenido a Solares de Oro</h1>
+    <p id="mensaje">Cadena hotelera chilena con presencia en todo el país, brindando experiencias únicas y confortables.</p>
+  </div>
+  <div class="section">
+    <h2>Nuestras Sucursales</h2>
+    <div id="inicioSucursales"></div>
+  </div>
+  <div class="section" style="background-color: var(--secondary-color);">
+    <h2>Sobre Nosotros</h2>
+    <p>Solares de Oro nació con la misión de ofrecer hospedaje de calidad en los lugares más hermosos de Chile. Cada una de nuestras sucursales está diseñada para brindarte una experiencia inolvidable, combinando comodidad, naturaleza y cultura local.</p>
+  </div>
+<footer class="footer"><p>&copy; 2025 Solares de Oro. Todos los derechos reservados.</p></footer>
+  <script>
+    const cont = document.getElementById('inicioSucursales');
+    let html = '<div style="display:flex;flex-wrap:wrap;justify-content:center;">';
+    getSucursales().slice(0,3).forEach(function(suc){
+      html += '<div class="card" style="width:300px;">';
+      html += '<img src="' + suc.imagenes[0] + '" alt="' + suc.nombre + '">';
+      html += '<div style="padding:1rem;">';
+      html += '<h3>' + suc.nombre + '</h3>';
+      html += '<p>' + suc.ciudad + ', ' + suc.region + '</p>';
+      html += '<p><a href="sucursal.html?id=' + suc.id + '">Ver detalles</a></p>';
+      html += '</div></div>';
+    });
+    html += '</div>';
+    cont.innerHTML = html;
+  </script>
+</body>
+</html>
